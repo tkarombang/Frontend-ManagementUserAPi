@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# User Management Application - Frontend
 
-## Getting Started
+User Management adalah aplikasi web sederhana yang memungkinkan untuk mengelola data pengguna dengan fitur Create, Read, Update, dan Delete (CRUD). Aplikasi ini dibangun menggunakan teknologi stack modern dengan tujuan untuk memberikan pengalaman manajemen data pengguna yang responsif dan efisien.
 
-First, run the development server:
+## Teknologi yang Digunakan
+
+Berikut adalah teknologi yang digunakan dalam pengembangan aplikasi ini:
+
+- ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white) **Next.js / React.js + TypeScript =** Framework React.js dengan TypeScript untuk pengembangan frontend.
+- ![Zustand](https://img.shields.io/badge/Zustand-0077b5?style=flat&logo=zustand&logoColor=white) **Zustand =** State management yang ringan dan efisien.
+
+- ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white) **Axios =** Library untuk melakukan HTTP request dengan API backend.
+
+- ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat&logo=tailwind-css&logoColor=white) **Tailwind CSS =** Utility-first CSS framework yang memungkinkan penataan UI yang cepat dan responsif.
+
+- ![Flowbite UI](https://img.shields.io/badge/Flowbite-00B4B2?style=flat&logo=flowbite&logoColor=white) **Flowbite UI =** Komponen UI berbasis Tailwind CSS untuk mempercepat pengembangan desain antarmuka.
+
+## Fitur
+
+1. **User List Page**
+
+   - Menampilkan daftar pengguna yang diambil dari API backend.
+   - Fitur pencarian untuk memudahkan pencarian pengguna berdasarkan nama.
+
+2. **Add User Page**
+   - Formulir untuk menambahkan pengguna baru ke dalam sistem.
+3. **Responsive Layout**
+   - Antarmuka aplikasi yang responsif untuk perangkat mobile, tablet, dan desktop.
+4. **Navbar/Header dan Footer**
+   - Elemen navigasi dan footer yang konsisten di seluruh halaman.
+
+## Prasyarat
+
+Sebelum menjalankan aplikasi ini, pastikan kamu memiliki beberapa hal berikut:
+
+- **Windows 10 Or Higher**
+- **Visual Studio Code** (VSCode) sebagai editor kode.
+- **Node.js v22.18.0** atau versi terbaru.
+
+## Menjalankan Proyek
+
+Ikuti langkah-langkah berikut untuk mengambil proyek ini dan menjalankannya secara lokal di mesin Anda:
+
+### 1. Kloning Repository
+
+Pertama, kloning repository ini ke komputer lokal Anda:
+
+```bash
+git clone https://github.com/tkarombang/Frontend_UserManagementApi.git
+cd repository-name
+```
+
+### 2. Instal Dependensi
+
+Setelah mengunduh project, jalankan perintah berikut untuk menginstal semua dependensi yang diperlukan:
+
+```bash
+npm install
+```
+
+### 3. Menjalankan Aplikasi
+
+Untuk menjalankan aplikasi di mode pengembangan, gunakan perintah berikut:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ini akan menjalankan aplikasi di http://localhost:3000 atau alamat lain yang ditentukan.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Menjalankan Backend
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Backend aplikasi ini menggunakan ASP.NET Core dan PostgreSQL. Untuk menjalankan API backend, pastikan Anda telah mengonfigurasi koneksi ke database PostgreSQL dan menjalankan aplikasi backend menggunakan perintah berikut:
 
-## Learn More
+```bash
+dotnet run
+```
 
-To learn more about Next.js, take a look at the following resources:
+Untuk Backendnya, kamu bisa mendapatkannya di [sini](https://www.github.com/tkarombang/Backend-UserManajementApi)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 5. Mengakses Aplikasi
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Setelah menjalankan aplikasi frontend dan backend, buka browser dan akses:
+Frontend: http://localhost:3000
+Backend (API): http://localhost:5000
 
-## Deploy on Vercel
+## Struktur Proyek
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+NAN TI SA JA
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Kontribusi
+
+Jika Anda tertarik untuk berkontribusi pada project ini, harap ikuti langkah-langkah berikut:
+
+Fork repository ini.
+
+Buat branch baru untuk fitur atau perbaikan (git checkout -b feature/fitur-baru).
+
+Lakukan perubahan yang diperlukan.
+
+Commit perubahan (git commit -am 'Tambah fitur baru').
+
+Push ke branch Anda (git push origin feature/fitur-baru).
+
+Buat Pull Request.
+
+---
+
+## Kontak
+
+Jika Anda memiliki pertanyaan atau ingin berkontribusi, silakan hubungi saya melalui GitHub atau kirim email ke [tuangkarombang@gmail.com].
+
+## Terima Kasih
+
+Terima kasih telah menggunakan aplikasi ini! Jangan ragu untuk membuka _issues_ di GitHub jika Anda menemukan bug atau memiliki saran fitur.
+
+---
+
+> **Note:** Jika Anda merasa aplikasi ini bermanfaat, jangan lupa untuk memberikan ⭐ pada repository ini di GitHub! 😊
