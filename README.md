@@ -86,7 +86,15 @@ Backend (API): http://localhost:5000
 
 ## Struktur Proyek
 
-NAN TI SA JA
+```
+src/
+ └── app/
+      ├── page.tsx         # Home Page
+      ├── users/
+      │    └── page.tsx    # User List Page
+      └── add-user/
+           └── page.tsx    # Add User Page
+```
 
 ### Kontribusi
 

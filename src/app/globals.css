@@ -34,10 +34,6 @@ body {
   margin: 0;
 }
 
-nav {
-  background: var(--foreground);
-}
-
 a {
   color: inherit;
   text-decoration: none;
