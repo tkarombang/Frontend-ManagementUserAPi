@@ -1,11 +1,8 @@
 import styles from "./page.module.css";
-import NavbarPage from "@/components/Layouts/navbar";
 
 export default function Home() {
   return (
     <div>
-      <NavbarPage />
-
       <main className={styles.main}>
         {/* Hero Section */}
         <section className="flex flex-col items-center justify-center py-20">

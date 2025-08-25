@@ -11,9 +11,9 @@ Berikut adalah teknologi yang digunakan dalam pengembangan aplikasi ini:
 
 - ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white) **Axios =** Library untuk melakukan HTTP request dengan API backend.
 
-- ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat&logo=tailwind-css&logoColor=white) **Tailwind CSS =** Utility-first CSS framework yang memungkinkan penataan UI yang cepat dan responsif.
+- ![Tailwind CSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) **Tailwind CSS =** Utility-first CSS framework yang memungkinkan penataan UI yang cepat dan responsif.
 
-- ![Flowbite UI](https://img.shields.io/badge/Flowbite-00B4B2?style=flat&logo=flowbite&logoColor=white) **Flowbite UI =** Komponen UI berbasis Tailwind CSS untuk mempercepat pengembangan desain antarmuka.
+- ![Material UI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white) **Material UI =** Komponen UI berbasis Tailwind CSS untuk mempercepat pengembangan desain antarmuka.
 
 ## Fitur
 
@@ -93,7 +93,10 @@ src/
       ├── users/
       │    └── page.tsx    # User List Page
       └── add-user/
-           └── page.tsx    # Add User Page
+          └── page.tsx     # Add User Page
+ └── components/
+      ├── Layouts
+          └── navbar.tsx   # Add User Page
 ```
 
 ### Kontribusi
