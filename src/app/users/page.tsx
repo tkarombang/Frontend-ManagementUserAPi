@@ -10,10 +10,14 @@ import Paper from "@mui/material/Paper";
 import UserTableToolbar from "@/components/Table/userToolbar";
 import Checkbox from "@mui/material/Checkbox";
 import { useUserStore } from "@/stores/userStore";
+import TablePagination from "@mui/material/TablePagination";
+import { Alert, Box, CircularProgress } from "@mui/material";
 
 export default function UserListPage() {
-  const { users, loading, error, fetchUsers } = useUserStore();
   const [selected, setSelected] = React.useState<readonly number[]>([]);
+  const { users, loading, error, fetchUsers } = useUserStore();
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   React.useEffect(() => {
     fetchUsers();
@@ -42,7 +46,35 @@ export default function UserListPage() {
     setSelected(newSelected);
   };
 
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
+  const visibleUsers = users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  console.log(page * rowsPerPage);
+  console.log(page * rowsPerPage + rowsPerPage);
+
+  if (loading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+        <Alert severity="error">{error}</Alert>
+      </Box>
+    );
+  }
 
   return (
     <div className="container m-auto mt-10">
@@ -76,7 +108,7 @@ export default function UserListPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map((row) => {
+            {visibleUsers.map((row) => {
               const isUserSelected = isSelected(row.id);
               return (
                 <TableRow
@@ -114,6 +146,7 @@ export default function UserListPage() {
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination rowsPerPageOptions={[5, 10, 25]} component="div" count={users.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
     </div>
   );
 }
