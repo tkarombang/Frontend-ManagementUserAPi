@@ -22,3 +22,12 @@ export const createNewUser = async (userData: Omit<UserData, "id">): Promise<Use
     throw error;
   }
 };
+
+export const deleteUsersById = async (ids: readonly number[]): Promise<void> => {
+  try {
+    await Promise.all(ids.map((id) => axios.delete(`${API_URL}/${id}`)));
+  } catch (error) {
+    console.error("Gagal Menghapus User: ", error);
+    throw error;
+  }
+};

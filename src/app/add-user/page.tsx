@@ -3,7 +3,7 @@
 import { FormUserData } from "@/types/userData";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import { FormControl, FormControlLabel, FormLabel, InputLabel } from "@mui/material";
+import { FormControl, FormControlLabel, FormLabel } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -14,7 +14,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { createNewUser } from "@/services/userServices";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function AddUserPage() {
   const [formData, setFormData] = useState<FormUserData>({
@@ -27,6 +27,7 @@ export default function AddUserPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,7 +35,7 @@ export default function AddUserPage() {
   };
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevData) => ({ ...prevData, status: e.target.value === "true" }));
+    setFormData((prevData) => ({ ...prevData, statusAktif: e.target.value === "true" }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,9 +48,13 @@ export default function AddUserPage() {
       const newUser = await createNewUser(formData);
       setSuccess(`User Baru "${newUser.nama}" Berhasil Ditambahkan`);
       setTimeout(() => {
-        router.push("/user");
+        router.push("/users");
       }, 2000);
-    } catch (error) {}
+    } catch (error) {
+      setError("Failed to add user. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -85,7 +90,7 @@ export default function AddUserPage() {
               <FormControl component="fieldset">
                 <FormLabel component="legend">Status</FormLabel>
                 <RadioGroup row name="statusAktif" value={formData.statusAktif.toString()} onChange={handleStatusChange}>
-                  <FormControlLabel value="true" control={<Radio />} label="aktif" />
+                  <FormControlLabel value="true" control={<Radio />} label="Aktif" />
                   <FormControlLabel value="false" control={<Radio />} label="Non-Aktif" />
                 </RadioGroup>
               </FormControl>

@@ -1,15 +1,22 @@
 "use client";
 import { IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function UserTableToolbar({ numSelected }: { numSelected: number }) {
+interface UserTableToolbarProps {
+  numSelected: number;
+  onDelete: () => void;
+}
+
+export default function UserTableToolbar(props: UserTableToolbarProps) {
+  const { numSelected, onDelete } = props;
   return (
     <Toolbar
       sx={{
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
         ...(numSelected > 0 && {
-          bgcolor: (theme) => (theme.palette.mode === "light" ? "rgba(0, 0, 0, 0.08)" : "rgba(255, 255, 255, 0.08)"),
+          bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
         }),
       }}
     >
@@ -24,7 +31,7 @@ export default function UserTableToolbar({ numSelected }: { numSelected: number 
       )}
       {numSelected > 0 && (
         <Tooltip title="Delete">
-          <IconButton>
+          <IconButton onClick={onDelete}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>

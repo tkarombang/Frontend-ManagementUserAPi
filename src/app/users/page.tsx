@@ -15,7 +15,7 @@ import { Alert, Box, CircularProgress } from "@mui/material";
 
 export default function UserListPage() {
   const [selected, setSelected] = React.useState<readonly number[]>([]);
-  const { users, loading, error, fetchUsers } = useUserStore();
+  const { users, loading, error, fetchUsers, deleteUsers } = useUserStore();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -55,6 +55,11 @@ export default function UserListPage() {
     setPage(0);
   };
 
+  const handleDelete = async () => {
+    await deleteUsers(selected as readonly number[]);
+    setSelected([]);
+  };
+
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
   const visibleUsers = users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   console.log(page * rowsPerPage);
@@ -64,6 +69,16 @@ export default function UserListPage() {
     return (
       <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
         <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (users.length === 0) {
+    return (
+      <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
+        <Alert severity="warning" sx={{ width: "80%" }}>
+          Data Kosong. Silakan tambahkan pengguna baru. klik <strong>Add User</strong>
+        </Alert>
       </Box>
     );
   }
@@ -78,7 +93,7 @@ export default function UserListPage() {
 
   return (
     <div className="container m-auto mt-10">
-      <UserTableToolbar numSelected={selected.length} />
+      <UserTableToolbar numSelected={selected.length} onDelete={handleDelete} />
       <TableContainer component={Paper}>
         <Table
           sx={{
