@@ -110,6 +110,7 @@ export default function UserListPage() {
           <TableBody>
             {visibleUsers.map((row) => {
               const isUserSelected = isSelected(row.id);
+              const statusText = row.status ? "aktif" : "Non-aktif";
               return (
                 <TableRow
                   key={row.nama}
@@ -135,7 +136,7 @@ export default function UserListPage() {
                     {row.nomorTelepon}
                   </TableCell>
                   <TableCell style={{ color: "#d3dad9" }} align="right">
-                    {row.status ? "Active" : "Inactive"}
+                    {statusText}
                   </TableCell>
                   <TableCell style={{ color: "#d3dad9" }} align="right">
                     {row.departemen}

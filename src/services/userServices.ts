@@ -12,3 +12,13 @@ export const fetchUsersData = async (): Promise<UserData[]> => {
     throw err;
   }
 };
+
+export const createNewUser = async (userData: Omit<UserData, "id">): Promise<UserData> => {
+  try {
+    const response = await axios.post<UserData>(API_URL, userData);
+    return response.data;
+  } catch (error) {
+    console.error("Gagal Menambahkan Data User Baru", error);
+    throw error;
+  }
+};
