@@ -9,15 +9,18 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import UserTableToolbar from "@/components/Table/userToolbar";
 import Checkbox from "@mui/material/Checkbox";
-import { useUserStore } from "@/stores/userStore";
 import TablePagination from "@mui/material/TablePagination";
-import { Alert, Box, CircularProgress } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import { useUserStore } from "@/stores/userStore";
+import { Alert, Box, CircularProgress, IconButton } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function UserListPage() {
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const { users, loading, error, fetchUsers, deleteUsers } = useUserStore();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const router = useRouter();
 
   React.useEffect(() => {
     fetchUsers();
@@ -58,6 +61,10 @@ export default function UserListPage() {
   const handleDelete = async () => {
     await deleteUsers(selected as readonly number[]);
     setSelected([]);
+  };
+
+  const handleEditClick = (id: number) => {
+    router.push(`/users/${id}/edit`);
   };
 
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
@@ -120,6 +127,9 @@ export default function UserListPage() {
               <TableCell style={{ color: "#715A5A" }} align="right">
                 Departemen
               </TableCell>
+              <TableCell style={{ color: "#715A5A" }} align="right">
+                Aksi
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -155,6 +165,11 @@ export default function UserListPage() {
                   </TableCell>
                   <TableCell style={{ color: "#d3dad9" }} align="right">
                     {row.departemen}
+                  </TableCell>
+                  <TableCell style={{ color: "#d3dad9" }} align="right">
+                    <IconButton onClick={() => handleEditClick(row.id)}>
+                      <EditIcon />
+                    </IconButton>
                   </TableCell>
                 </TableRow>
               );

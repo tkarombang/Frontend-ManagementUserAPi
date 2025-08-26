@@ -31,3 +31,23 @@ export const deleteUsersById = async (ids: readonly number[]): Promise<void> => 
     throw error;
   }
 };
+
+export const fetchUserById = async (id: number): Promise<UserData> => {
+  try {
+    const response = await axios.get<UserData>(`${API_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Gagal Mengambil User dengan Id ${id}`, error);
+    throw error;
+  }
+};
+
+export const editUser = async (id: number, userData: Omit<UserData, "id">): Promise<UserData> => {
+  try {
+    const response = await axios.put(`${API_URL}/${id}`, userData);
+    return response.data;
+  } catch (error) {
+    console.error(`Gagal Melakukan Edit Data dengan ID ${id}`, error);
+    throw error;
+  }
+};
