@@ -110,7 +110,7 @@ export default function UserListPage() {
           <TableBody>
             {visibleUsers.map((row) => {
               const isUserSelected = isSelected(row.id);
-              const statusText = row.status ? "aktif" : "Non-aktif";
+              const statusText = row.statusAktif ? "aktif" : "Non-aktif";
               return (
                 <TableRow
                   key={row.nama}

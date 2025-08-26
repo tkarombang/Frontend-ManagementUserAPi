@@ -3,7 +3,7 @@ export interface UserData {
   nama: string;
   email: string;
   nomorTelepon: string;
-  status: boolean;
+  statusAktif: boolean;
   departemen: string;
 }
 
@@ -11,6 +11,6 @@ export interface FormUserData {
   nama: string;
   email: string;
   nomorTelepon: string;
-  status: boolean;
+  statusAktif: boolean;
   departemen: string;
 }

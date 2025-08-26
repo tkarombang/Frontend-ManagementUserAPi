@@ -21,7 +21,7 @@ export default function AddUserPage() {
     nama: "",
     email: "",
     nomorTelepon: "",
-    status: true,
+    statusAktif: true,
     departemen: "",
   });
   const [loading, setLoading] = useState(false);
@@ -47,7 +47,7 @@ export default function AddUserPage() {
       const newUser = await createNewUser(formData);
       setSuccess(`User Baru "${newUser.nama}" Berhasil Ditambahkan`);
       setTimeout(() => {
-        router.push("/users");
+        router.push("/user");
       }, 2000);
     } catch (error) {}
   };
@@ -79,12 +79,12 @@ export default function AddUserPage() {
               <TextField fullWidth label="Email" name="email" type="email" value={formData.email} onChange={handleChange} required />
             </Grid>
             <Grid size={12}>
-              <TextField fullWidth label="No. Hp" name="noTelepon" value={formData.nomorTelepon} onChange={handleChange} required />
+              <TextField fullWidth label="No. Hp" name="nomorTelepon" value={formData.nomorTelepon} onChange={handleChange} required />
             </Grid>
             <Grid size={12} sx={{ m: 1, miniWidth: 80 }}>
               <FormControl component="fieldset">
                 <FormLabel component="legend">Status</FormLabel>
-                <RadioGroup row name="status" value={formData.status.toString()} onChange={handleStatusChange}>
+                <RadioGroup row name="statusAktif" value={formData.statusAktif.toString()} onChange={handleStatusChange}>
                   <FormControlLabel value="true" control={<Radio />} label="aktif" />
                   <FormControlLabel value="false" control={<Radio />} label="Non-Aktif" />
                 </RadioGroup>
