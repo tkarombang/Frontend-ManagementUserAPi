@@ -167,7 +167,7 @@ export default function UserListPage() {
                     {row.departemen}
                   </TableCell>
                   <TableCell style={{ color: "#d3dad9" }} align="right">
-                    <IconButton onClick={() => handleEditClick(row.id)}>
+                    <IconButton sx={{ color: "slateblue" }} onClick={() => handleEditClick(row.id)}>
                       <EditIcon />
                     </IconButton>
                   </TableCell>

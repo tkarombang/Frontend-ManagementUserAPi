@@ -1,9 +1,10 @@
-"use cliennt";
+"use client";
 
 import { editUser, fetchUserById } from "@/services/userServices";
 import { FormUserData } from "@/types/userData";
-import Radio from "@mui/icons-material/Radio";
-import { Alert, Box, Button, CircularProgress, FormControl, FormControlLabel, FormLabel, Grid, Paper, RadioGroup, TextField, Typography } from "@mui/material";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import { Alert, Box, Button, CircularProgress, FormControl, FormControlLabel, FormLabel, Grid, Paper, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -50,7 +51,7 @@ export default function EditUserPage({ params }: { params: { id: string } }) {
   };
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormEditData((prevData) => ({ ...prevData, status: e.target.value === "true" }));
+    setFormEditData((prevData) => ({ ...prevData, statusAktif: e.target.value === "true" }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -103,7 +104,7 @@ export default function EditUserPage({ params }: { params: { id: string } }) {
             <Grid size={12}>
               <FormControl component="fieldset">
                 <FormLabel component="legend">Status</FormLabel>
-                <RadioGroup row name="status" value={formEditData.statusAktif.toString()} onChange={handleStatusChange}>
+                <RadioGroup row name="statusAktif" value={formEditData.statusAktif.toString()} onChange={handleStatusChange}>
                   <FormControlLabel value="true" control={<Radio />} label="Aktif" />
                   <FormControlLabel value="false" control={<Radio />} label="Non-aktif" />
                 </RadioGroup>
@@ -113,7 +114,20 @@ export default function EditUserPage({ params }: { params: { id: string } }) {
               <TextField fullWidth label="Departemen" name="departemen" value={formEditData.departemen} onChange={handleChange} required />
             </Grid>
             <Grid size={12}>
-              <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading}>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  backgroundColor: "#37353E",
+                  color: "#715A5A",
+                  "&:hover": {
+                    backgroundColor: "#44444E",
+                    color: "#D3DAD9",
+                  },
+                }}
+                fullWidth
+                disabled={loading}
+              >
                 {loading ? <CircularProgress size={24} /> : "Update User"}
               </Button>
             </Grid>
