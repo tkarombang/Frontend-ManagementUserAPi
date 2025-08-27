@@ -1,7 +1,9 @@
 import { UserData } from "@/types/userData";
 import axios from "axios";
 
-const API_URL = "http://localhost:5101/api/User";
+// const API_URL = "http://localhost:5101/api/User";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+if (!API_URL) throw new Error("NEXT PUBLIC API URL, Tidak Ditemukan");
 
 export const fetchUsersData = async (): Promise<UserData[]> => {
   try {
