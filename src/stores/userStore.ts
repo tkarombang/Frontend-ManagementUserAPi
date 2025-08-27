@@ -28,17 +28,10 @@ export const useUserStore = create<UserState>((set) => ({
     set({ loading: true });
     try {
       await deleteUsersById(ids);
-      await useUserStore.getState().fetchUsers();
-      const { users } = useUserStore.getState();
-      if (users.length === 0) {
-        set({ error: null });
-      }
-      // const updatedeUsers = await fetchUsersData();
-      // set((state) => ({
-      //   // users: state.users.filter((user) => !ids.includes(user.id)),
-      //   users: updatedeUsers,
-      //   loading: false,
-      // }));
+      set((state) => ({
+        users: state.users.filter((user) => !ids.includes(user.id)),
+        loading: false,
+      }));
     } catch (error) {
       set({ error: "Gagal Menghapus User", loading: false });
     }
